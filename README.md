@@ -50,6 +50,12 @@ weather-app/
 └── README.md          # Dokumentasi Ini
 ```
 
+## 🌐 Siap Deploy (Vercel/Netlify)
+Aplikasi ini sudah **100% Production Ready**:
+- **HTTPS Enforced**: Semua API call sudah menggunakan protokol aman (`https://`).
+- **Mixed Content Safe**: Tidak akan ada error saat di-hosting di Vercel, Netlify, atau GitHub Pages.
+- **Mobile Optimized**: Tampilan sudah dites di layar kecil (360px) tanpa tombol terpotong.
+
 ## 🚀 Cara Penggunaan
 1. Buka `index.html`.
 2. Izinkan akses **Lokasi (GPS)** saat diminta browser untuk akurasi terbaik.
