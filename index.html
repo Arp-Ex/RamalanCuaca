@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramalan Cuaca Modern</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Search Section -->
+        <header class="search-box">
+            <i class="fa-solid fa-location-dot"></i>
+            <input type="text" id="city-input" placeholder="Masukkan nama kota..." list="city-suggestions">
+            <datalist id="city-suggestions"></datalist>
+            <button id="search-btn" class="fa-solid fa-magnifying-glass"></button>
+            <button id="location-btn" class="fa-solid fa-crosshairs" title="Gunakan Lokasi Saya"></button>
+        </header>
+
+        <!-- Error Section -->
+        <div class="not-found">
+            <img src="assets/icons/404.png" alt="404 Not Found"
+                onerror="this.src='https://cdn-icons-png.flaticon.com/512/3846/3846067.png'">
+            <p>Maaf, lokasi tidak ditemukan :/</p>
+        </div>
+
+        <!-- Load Cities Data first -->
+        <script src="assets/js/cities.js"></script>
+
+        <!-- Weather Section -->
+        <div class="weather-box">
+            <img src="" alt="" class="weather-icon">
+            <p class="temperature">0<span>°C</span></p>
+            <p class="description">Langit Cerah</p>
+            <p class="city-name">Jakarta, ID</p>
+        </div>
+
+        <div class="weather-details">
+            <div class="humidity">
+                <i class="fa-solid fa-water"></i>
+                <div class="text">
+                    <span id="humidity-val">0%</span>
+                    <p>Kelembapan</p>
+                </div>
+            </div>
+            <div class="wind">
+                <i class="fa-solid fa-wind"></i>
+                <div class="text">
+                    <span id="wind-speed">0 Km/h</span>
+                    <p>Kecepatan Angin</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Forecast Section -->
+        <div class="forecast-section">
+            <h3>Prakiraan 5 Hari</h3>
+            <div class="forecast-container" id="forecast-container">
+                <!-- Forecast items will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fa-solid fa-moon"></i>
+    </button>
+
+    <script src="assets/js/app.js"></script>
+</body>
+
+</html>

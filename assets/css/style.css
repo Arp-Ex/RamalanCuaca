@@ -1,0 +1,499 @@
+:root {
+    --primary-color: #06283D;
+    --secondary-color: #1363DF;
+    --accent-color: #47B5FF;
+    --text-color: #333;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --card-shadow: 0 16px 32px rgba(0, 0, 0, 0.1);
+    --body-bg: linear-gradient(135deg, #00feba, #5b548a);
+    --forecast-bg: rgba(255, 255, 255, 0.6);
+}
+
+.dark-mode {
+    --primary-color: #fff;
+    --secondary-color: #47B5FF;
+    --text-color: #f0f0f0;
+    --glass-bg: rgba(16, 16, 32, 0.85);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --card-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    --body-bg: linear-gradient(135deg, #232526, #414345);
+    --forecast-bg: rgba(255, 255, 255, 0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    /* Remove tap highlight on mobile */
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--body-bg);
+    overflow-x: hidden;
+    transition: background 0.5s ease;
+    padding: 20px;
+}
+
+.container {
+    position: relative;
+    width: 400px;
+    /* Responsive width for mobile */
+    max-width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    transition: height 0.6s ease, background 0.5s ease, width 0.3s ease;
+    overflow: hidden;
+}
+
+/* Search Box */
+.search-box {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    gap: 10px;
+    /* Better spacing on mobile */
+}
+
+.search-box input {
+    flex: 1;
+    /* Take remaining space */
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    font-weight: 500;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    padding: 5px;
+    transition: border-color 0.3s;
+}
+
+.dark-mode .search-box input {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.search-box input:focus {
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.search-box input::placeholder {
+    color: var(--text-color);
+    opacity: 0.6;
+}
+
+.search-box button {
+    cursor: pointer;
+    width: 44px;
+    /* Mobile Friendly Size */
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: var(--secondary-color);
+    color: #fff;
+    font-size: 1.2rem;
+    transition: transform 0.2s ease, background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    /* Prevent shrinking */
+}
+
+.search-box button:active {
+    transform: scale(0.9);
+    /* Touch feedback */
+}
+
+.search-box button:hover {
+    background: var(--accent-color);
+}
+
+.search-box i.fa-location-dot {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-right: 5px;
+}
+
+/* Weather Box */
+.weather-box {
+    text-align: center;
+    margin-bottom: 30px;
+    transition: opacity 0.5s ease;
+}
+
+.weather-box img {
+    width: 60%;
+    max-width: 200px;
+    /* Limit size on desktop */
+    min-width: 150px;
+    /* Ensure visibility on mobile */
+    filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.2));
+}
+
+.weather-box .temperature {
+    font-size: clamp(3rem, 10vw, 4rem);
+    /* Fluid typography */
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1;
+    margin-top: 20px;
+    position: relative;
+}
+
+.weather-box .temperature span {
+    font-size: 1.5rem;
+    position: absolute;
+    top: 5px;
+    margin-left: 5px;
+}
+
+.weather-box .description {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    font-weight: 500;
+    text-transform: capitalize;
+    margin-top: 10px;
+}
+
+.weather-box .city-name {
+    margin-top: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: var(--forecast-bg);
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: inline-flex;
+    /* Pill shape */
+}
+
+/* Weather Details */
+.weather-details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 15px;
+}
+
+.weather-details .humidity,
+.weather-details .wind {
+    display: flex;
+    align-items: center;
+    width: 48%;
+    /* Slightly wider */
+    background: var(--forecast-bg);
+    padding: 15px;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s;
+}
+
+.weather-details .humidity:active,
+.weather-details .wind:active {
+    transform: scale(0.98);
+}
+
+.weather-details i {
+    font-size: 2rem;
+    margin-right: 10px;
+    color: var(--secondary-color);
+}
+
+.weather-details .text span {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.weather-details .text p {
+    font-size: 0.8rem;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Not Found / Error */
+.not-found {
+    width: 100%;
+    text-align: center;
+    margin-top: 50px;
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.not-found img {
+    width: 70%;
+}
+
+.not-found p {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-top: 15px;
+}
+
+/* Forecast Section */
+.forecast-section {
+    margin-top: 30px;
+    border-top: 1px solid var(--glass-border);
+    padding-top: 20px;
+}
+
+.forecast-section h3 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+.forecast-container {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    /* Snap scrolling for better mobile feel */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.forecast-container::-webkit-scrollbar {
+    display: none;
+}
+
+.forecast-item {
+    background: var(--forecast-bg);
+    padding: 12px;
+    border-radius: 15px;
+    text-align: center;
+    min-width: 80px;
+    /* Wider for touch */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+    transition: transform 0.2s;
+    scroll-snap-align: start;
+    /* Snap alignment */
+    border: 1px solid transparent;
+}
+
+.forecast-item:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.dark-mode .forecast-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.forecast-item:active {
+    transform: scale(0.95);
+}
+
+.forecast-item .day {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.forecast-item img {
+    width: 45px;
+    height: 45px;
+    margin-bottom: 5px;
+}
+
+.forecast-item .temp {
+    font-size: 1rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+/* Loader */
+.loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--glass-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    display: none;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--secondary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+    background: var(--glass-bg);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+
+.theme-toggle:active {
+    transform: scale(0.9) rotate(15deg);
+}
+
+/* Clean up footer or extra elements */
+.copyright {
+    display: none;
+}
+
+/* Mobile Specific Optimizations */
+@media screen and (max-width: 450px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        /* Start from top on mobile */
+        padding-top: 20px;
+    }
+
+    .container {
+        width: 100%;
+        padding: 1.5rem;
+        padding-top: 4.5rem;
+        /* Push content down to avoid overlapping the absolute theme toggle */
+        border-radius: 25px;
+        /* Softer corners */
+    }
+
+    .search-box {
+        margin-bottom: 25px;
+    }
+
+    .search-box input {
+        font-size: 1rem;
+    }
+
+    .weather-box img {
+        width: 160px;
+    }
+
+    .weather-box .description {
+        font-size: 1.2rem;
+    }
+
+    .weather-box .temperature {
+        font-size: 4rem;
+        display: inline-flex;
+        /* Use flex for alignment */
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .weather-box .temperature span {
+        font-size: 1.5rem;
+        position: relative;
+        /* Safer than absolute */
+        top: 10px;
+        margin-left: 5px;
+    }
+
+    .weather-details {
+        flex-direction: row;
+        /* Keep row but adjust gap */
+        gap: 15px;
+        /* Consistent gap */
+    }
+
+    .weather-details .humidity,
+    .weather-details .wind {
+        padding: 15px;
+        flex-direction: column;
+        /* Stack icon and text for better space usage */
+        text-align: center;
+        flex: 1;
+        /* Fixes the 50% + gap overflow issue */
+        width: auto;
+    }
+
+    .weather-details i {
+        margin-right: 0;
+        margin-bottom: 5px;
+        font-size: 1.8rem;
+    }
+
+    .weather-details .text span {
+        font-size: 1rem;
+    }
+
+    .forecast-container {
+        gap: 10px;
+    }
+
+    .forecast-item {
+        min-width: 75px;
+        padding: 10px;
+    }
+}
